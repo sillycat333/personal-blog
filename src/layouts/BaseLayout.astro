@@ -2,25 +2,55 @@
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
-const { pageTitle } = Astro.props;
+interface Props {
+    pageTitle: string;
+    pageDesc?: string;
+}
+
+const {
+    pageTitle,
+    pageDesc = "A personal site and blog by rid, exploring physics, deep learning, and Linux.",
+} = Astro.props;
+
+const siteName = "rid's site";
 ---
 
-<html lang="en">
+<!doctype html>
+<html lang="en" class="scroll-smooth">
     <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" />
+        <meta charset="utf-t-8" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>{pageTitle}</title>
+        <meta name="description" content={pageDesc} />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <title>{pageTitle} | {siteName}</title>
     </head>
-    <body class="bg-neutral-900">
-        <div
-            class="flex flex-col justify-between h-screen max-w-4xl text-neutral-200 bg-neutral-900 m-auto p-5"
+    <body class="bg-neutral-950 font-sans text-neutral-200">
+        <a
+            href="#main-content"
+            class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:top-4 focus:left-4 bg-white text-black"
         >
+            Skip to content
+        </a>
+
+        <div class="flex min-h-screen flex-col">
             <Navbar />
-            <section>
+
+            <main
+                id="main-content"
+                class="mx-auto w-full max-w-5xl flex-grow px-4 py-12 sm:px-6 lg:px-8"
+            >
                 <slot />
-            </section>
+            </main>
+
             <Footer />
         </div>
     </body>

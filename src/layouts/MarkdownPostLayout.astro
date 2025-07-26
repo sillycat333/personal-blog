@@ -1,11 +1,39 @@
 ---
+// src/layouts/BlogPostLayout.astro
 import BaseLayout from "./BaseLayout.astro";
 
 const { frontmatter } = Astro.props;
+
+const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
+    "en-US",
+    {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    },
+);
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-    <p>Written by {frontmatter.author}</p>
-    <p>Published on: {frontmatter.pubDate.toString().slice(0, 10)}</p>
-    <slot />
+    <main class="mx-auto max-w-3xl px-4 py-8">
+        <div class="text-center">
+            <h1
+                class="text-4xl font-bold tracking-tight text-white md:text-5xl"
+            >
+                {frontmatter.title}
+            </h1>
+
+            <div
+                class="mt-6 flex items-center justify-center gap-x-4 text-base text-gray-400"
+            >
+                <span>By {frontmatter.author}</span>
+                <span class="text-gray-600">&bull;</span>
+                <time datetime={frontmatter.pubDate}>{formattedDate}</time>
+            </div>
+        </div>
+
+        <article class="prose prose-invert mt-12 max-w-none">
+            <slot />
+        </article>
+    </main>
 </BaseLayout>

@@ -1,11 +1,25 @@
 ---
+// This would be your BlogPostCard.astro or similar component
 const { url, title, pubDate, description } = Astro.props;
 ---
 
-<li>
-    <div class="font-mono">
-        <a class="font-bold text-sm lg:text-lg" href={url}>{title}</a>
-        <p class="text-sm lg:text-base">{pubDate}</p>
-    </div>
-    <p class="text-sm lg:text-base mt-1.5 font-sans">{description}</p>
+<li class="h-full">
+    <a
+        href={url}
+        class="flex h-full flex-col rounded-lg border border-neutral-800 bg-neutral-900/50 p-6 transition-all duration-300 hover:border-indigo-500/50 hover:-translate-y-1"
+    >
+        <h3 class="font-mono text-lg font-bold text-neutral-100">
+            {title}
+        </h3>
+
+        <p
+            class="mt-2 flex-grow font-sans text-sm leading-relaxed text-neutral-400"
+        >
+            {description}
+        </p>
+
+        <time class="mt-4 block font-mono text-xs text-neutral-500">
+            {pubDate}
+        </time>
+    </a>
 </li>
