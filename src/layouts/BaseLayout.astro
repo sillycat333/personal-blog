@@ -1,0 +1,27 @@
+---
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+const { pageTitle } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{pageTitle}</title>
+    </head>
+    <body class="bg-neutral-900">
+        <div
+            class="flex flex-col justify-between h-screen max-w-4xl text-neutral-200 bg-neutral-900 m-auto p-5"
+        >
+            <Navbar />
+            <section>
+                <slot />
+            </section>
+            <Footer />
+        </div>
+    </body>
+</html>

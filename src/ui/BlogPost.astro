@@ -1,0 +1,11 @@
+---
+const { url, title, pubDate, description } = Astro.props;
+---
+
+<li>
+    <div class="font-mono">
+        <a class="font-bold text-sm lg:text-lg" href={url}>{title}</a>
+        <p class="text-sm lg:text-base">{pubDate}</p>
+    </div>
+    <p class="text-sm lg:text-base mt-1.5 font-sans">{description}</p>
+</li>

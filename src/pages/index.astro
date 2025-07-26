@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RecentPost from "../components/RecentPost.astro";
+import Edu from "../components/Edu.astro";
+
+const pageTitle = "home";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <div
+        class="relative flex flex-col justify-center font-mono text-xl lg:text-2xl -mt-10"
+    >
+        <h1>hi, my name is rid</h1>
+        <p>
+            I'm currently studying physics at university. Besides my love for
+            physics, I also enjoy deep learning and tinkering with Linux.
+        </p>
+    </div>
+</BaseLayout>
