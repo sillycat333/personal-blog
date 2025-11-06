@@ -1,9 +1,10 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: hello world 1
+title: Hello World
 author: Ridho
-description: "First post, yay!"
-pubDate: 2022/08/08
+description: "This post will show up on its own!"
+pubDate: 2025/08/10
 tags: ["hello", "world"]
 ---
-<>Hello world</>
+
+soon
