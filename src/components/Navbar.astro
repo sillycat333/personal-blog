@@ -1,52 +1,61 @@
 ---
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
 
+const linkClass = (href: string) => ({
+  "text-neutral-100 underline decoration-neutral-500 underline-offset-4":
+    isActive(href),
+  "text-neutral-400": !isActive(href),
+});
 ---
 
 <header
-    class="font-mono sticky top-0 z-50 w-full border-b border-neutral-800/80 bg-neutral-950/50 backdrop-blur-md"
+  class="sticky top-0 z-50 w-full border-b border-neutral-800/80 bg-neutral-950/50 font-mono backdrop-blur-md"
 >
-    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <nav class="flex h-16 items-center justify-between">
-            <a href="/" class="flex items-center gap-1.5 text-lg font-bold">
-                <span class="text-neutral-400">></span>
-                <span class="text-neutral-100">$ rid</span>
-                <span class="animate-blink text-indigo-400">_</span>
-            </a>
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <nav class="flex h-16 items-center justify-between gap-4">
+      <a href="/" class="flex shrink-0 items-center gap-1.5 text-lg font-bold">
+        <span class="text-neutral-400">></span>
+        <span class="text-neutral-100">$ rid</span>
+        <span class="animate-blink text-neutral-100">_</span>
+      </a>
 
-            <div class="flex items-center gap-6 text-sm">
-                <a
-                    class="text-neutral-400 transition-colors hover:text-neutral-100"
-                    href="/">/home</a
-                >
-                <a
-                    class="text-neutral-400 transition-colors hover:text-neutral-100"
-                    href="/blog">/blog</a
-                >
-                <a
-                    class="text-neutral-400 transition-colors hover:text-neutral-100"
-                    href="/tags">/tags</a
-                >
+      <div class="flex items-center gap-3 text-xs sm:gap-6 sm:text-sm">
+        <a
+          class:list={[
+            "hidden hover:text-neutral-100 sm:inline",
+            linkClass("/"),
+          ]}
+          href="/"
+          aria-current={isActive("/") ? "page" : undefined}>/home</a
+        >
+        <a
+          class:list={[
+            "hover:text-neutral-100",
+            linkClass("/blog"),
+          ]}
+          href="/blog"
+          aria-current={isActive("/blog") ? "page" : undefined}>/blog</a
+        >
+        <a
+          class:list={[
+            "hover:text-neutral-100",
+            linkClass("/tags"),
+          ]}
+          href="/tags"
+          aria-current={isActive("/tags") ? "page" : undefined}>/tags</a
+        >
 
-                <a
-                    href="/resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="rounded-md border border-indigo-500/50 px-3 py-1.5 text-indigo-400 transition-colors hover:bg-indigo-500/10"
-                >
-                    /resume
-                </a>
-            </div>
-        </nav>
-    </div>
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-neutral-100"
+        >
+          /resume[outdated]
+        </a>
+      </div>
+    </nav>
+  </div>
 </header>
-
-<style>
-    @keyframes blink {
-        50% {
-            opacity: 0;
-        }
-    }
-    .animate-blink {
-        animation: blink 1.2s step-end infinite;
-    }
-</style>

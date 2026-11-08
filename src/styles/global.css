@@ -1,0 +1,36 @@
+@import "@fontsource/open-sans/400.css";
+@import "@fontsource/open-sans/700.css";
+@import "@fontsource-variable/jetbrains-mono/index.css";
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --animate-blink: blink 1s step-start infinite;
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-neutral-400);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-neutral-700);
+    color: var(--color-neutral-100);
+  }
+}

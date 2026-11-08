@@ -1,0 +1,34 @@
+---
+import BlogPost from "./BlogPost.astro";
+import type { Post } from "../types";
+
+interface Props {
+  posts: Post[];
+}
+
+const { posts } = Astro.props;
+
+const formatDate = (date: string) =>
+  new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+---
+
+{
+  posts.length > 0 ? (
+    <ul class="grid grid-cols-1 gap-6">
+      {posts.map((post) => (
+        <BlogPost
+          url={post.url}
+          title={post.frontmatter.title}
+          pubDate={formatDate(post.frontmatter.pubDate)}
+          description={post.frontmatter.description}
+        />
+      ))}
+    </ul>
+  ) : (
+    <p class="font-mono text-sm text-neutral-400">no posts yet.</p>
+  )
+}

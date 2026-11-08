@@ -2,17 +2,21 @@
 import Contact from "../ui/Contact.astro";
 ---
 
-<footer class="flex lg:justify-between text-xs lg:text-sm font-mono pt-10">
+<footer class="mt-8 border-t border-neutral-800">
+  <div
+    class="mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-8 font-mono text-xs text-neutral-400 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8 lg:text-sm"
+  >
     <p>created by rid</p>
-    <div>
-        <Contact
-            url="https://github.com/sillycat333"
-            username="github/sillycat333"
-        />
-        <!-- <Contact -->
-        <!--     url="https://www.reddit.com/user/sagman09" -->
-        <!--     username="reddit/sagman09" -->
-        <!-- /> -->
-        <Contact url="mailto:rid2003@proton.me" username="rid2003@proton.me" />
+    <div class="flex flex-wrap gap-x-4 gap-y-1">
+      <Contact
+        url="https://github.com/sillycat333"
+        username="github/sillycat333"
+      />
+      <!-- <Contact -->
+      <!--     url="https://www.reddit.com/user/sagman09" -->
+      <!--     username="reddit/sagman09" -->
+      <!-- /> -->
+      <Contact url="mailto:rid2003@proton.me" username="rid2003@proton.me" />
     </div>
+  </div>
 </footer>
